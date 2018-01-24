@@ -1,14 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      AWS Upload/List/Delete files to S3
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-item>
+    <input type="file" (change)="fileEvent($event)" />
+  </ion-item>
+
+  <ion-item>
+    <button ion-button (click)="uploadCurrentFile()">Upload</button>
+  </ion-item>
+
+  <ion-item>
+    <button ion-button (click)="listFiles()">Refresh list of files</button>
+  </ion-item>
+
+  <ion-item *ngFor="let file of files">
+    File name: {{file.Key}} <button ion-button color="danger" (click)="deleteFile(file.Key)">Delete</button>
+  </ion-item>
 </ion-content>
